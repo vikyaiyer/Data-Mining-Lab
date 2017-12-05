@@ -1,0 +1,16 @@
+
+def preprocess():
+        for i in dataset:
+            for j in range(len(i)):
+                if(i[j]=="?"):
+                    dataset.remove(i)
+                    break
+        for i in range (len(dataset)):
+            print dataset[i]
+
+
+def preprocessBCW(self):
+        self.preprocess()
+        for i in range(len(self.dataset)):
+            if(len(self.dataset[i])!=11):
+                self.dataset.remove(self.dataset[i])

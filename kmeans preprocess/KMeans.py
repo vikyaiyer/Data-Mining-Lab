@@ -16,10 +16,11 @@ class KMeans:
 
         for i in range (self.k):
             self.cluster[i].append(self.dataset[i])
-            self.meanCluster.append(self.dataset[i][:len(self.dataset[0])-1])
+            self.meanCluster.append(self.dataset[i][1:])
+            
 
         for i in range (self.k,len(self.dataset)):
-            index=self.checkCluster(self.dataset[i][:len(self.dataset[0])-1])
+            index=self.checkCluster(self.dataset[i][1:])
             self.cluster[index].append(self.dataset[i])
 
         self.calculateMean()
@@ -45,7 +46,7 @@ class KMeans:
             for i in range (len(self.meanCluster[c])):
                 self.meanCluster[c][i]=0.0
             for i in range (len_clust):
-                for j in range (len(self.meanCluster[c])):
+                for j in range (1,len(self.meanCluster[c])):
                     self.meanCluster[c][j]+=float(self.cluster[c][i][j])
             for i in range (len(self.meanCluster[c])):
                 if(len_clust!=0):
@@ -55,7 +56,7 @@ class KMeans:
         mean_vec=[]
         for i in range (len(self.meanCluster)):
             tmp=0
-            for j in range (len(self.meanCluster[0])-1):
+            for j in range (1,len(self.meanCluster[0])):
                 try:
                     tmp+=(float(self.meanCluster[i][j])-float(vec[j]))**2
                 except:
@@ -85,6 +86,13 @@ class KMeans:
         self.printMean()
         return self.cluster
 
+def preprocess():
+        for i in dataset:
+            for j in range(len(i)):
+                if("?" in i[j]):
+                    dataset.remove(i)
+                    break
+                
 def loadFile(fileName):
         file_f=open(fileName,"r+")
         for i in file_f:
@@ -97,5 +105,7 @@ def loadFile(fileName):
 dataset = []
 k = int(input("Enter number of clusters: "))
 km = KMeans()
-loadFile("iris.data")
+loadFile("StoneFlakes.data")
+preprocess()
+print "Elements after preprocesssing: "+(str(len(dataset)))
 cluster=km.createClusters(dataset,k)
