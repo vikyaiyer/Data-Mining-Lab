@@ -1,0 +1,9 @@
+Color,Tough,Fungus,Appear,Poison
+Green,Hard,No,Smooth,No
+Green,Hard,Yes,Smooth,No
+Brown,Soft,No,Wrinkl,No
+Orange,Hard,No,Wrinkl,Yes
+Green,Soft,Yes,Smooth,Yes
+Green,Hard,Yes,Wrinkl,Yes
+Orange,Hard,No,Wrinkl,Yes
+Green,Soft,Yes,Wrinkl,No
